@@ -77,57 +77,52 @@ public:
 };
 int main()
 {
-    
 
-        
-        const int AllAnimal=100;
-        Mammal mammal[AllAnimal];
-        Bird bird[AllAnimal];
+    const int AllAnimal = 100;
+    Mammal mammal[AllAnimal];
+    Bird bird[AllAnimal];
 
-        int newMammal = 0;
-        int newBird = 0;
-        while (true)
+    int newMammal = 0;
+    int newBird = 0;
+    while (true)
+    {
+        char animal_type;
+        cout << "Add new Animal (Mammal/Bird)? (M/B): ";
+        cin >> animal_type;
+        if (tolower(animal_type) != 'm' && tolower(animal_type) != 'b')
         {
-            char animal_type;
-            cout << "Add new Animal (Mammal/Bird)? (M/B): ";
-            cin >> animal_type;
-            if (tolower(animal_type) != 'm' && tolower(animal_type) != 'b')
-            {
-                cout << "Invalid Input! Enter M for Mammal and B for Bird\n";
-                continue;
-            }
-            else if (tolower(animal_type) == 'm')
-            {
-                if (newMammal < AllAnimal)
-                {
-                    mammal[newMammal].modifyDetails();
-                    newMammal++;
-                }
-            }
-            else if (tolower(animal_type) == 'b')
-            {
-                if (newBird < AllAnimal)
-                    bird[newBird].modifyDetails();
-                newBird++;
-
-            }
-            char add_new;
-            cout << "Add new Animal (Yes/No)? (Y/N): ";
-            cin >> add_new;
-            if (tolower(add_new) != 'y')
-                break;
+            cout << "Invalid Input! Enter M for Mammal and B for Bird\n";
+            continue;
         }
-
-        
-        for (int i = 0;i < newMammal;i++)
+        else if (tolower(animal_type) == 'm')
         {
-            mammal[i].displayDetails();
+            if (newMammal < AllAnimal)
+            {
+                mammal[newMammal].modifyDetails();
+                newMammal++;
+            }
         }
-        cout << "\n";
-        for (int i = 0;i < newBird;i++)
+        else if (tolower(animal_type) == 'b')
         {
-            bird[i].displayDetails();
+            if (newBird < AllAnimal)
+                bird[newBird].modifyDetails();
+            newBird++;
         }
-        return 0;
-    
+        char add_new;
+        cout << "Add new Animal (Yes/No)? (Y/N): ";
+        cin >> add_new;
+        if (tolower(add_new) != 'y')
+            break;
+    }
+
+    for (int i = 0; i < newMammal; i++)
+    {
+        mammal[i].displayDetails();
+    }
+    cout << "\n";
+    for (int i = 0; i < newBird; i++)
+    {
+        bird[i].displayDetails();
+    }
+    return 0;
 }
