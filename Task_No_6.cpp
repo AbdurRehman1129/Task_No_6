@@ -17,6 +17,10 @@ public:
         id = i;
         habitat = h;
     }
+    string getId()
+    {
+        return id;
+    }
     void displayDetails()
     {
         cout << "\nAnimal Name : " << name << ",\nAnimal ID : " << id << "\nAnimal Habitat : " << habitat;
@@ -29,6 +33,20 @@ public:
         cin >> id;
         cout << "Enter Animal Habitat : ";
         cin >> habitat;
+    }
+    void modifyDetailsById(string targetID)
+    {
+        if (getId() == targetID)
+        {
+            cout << "Enter Animal Name : ";
+            cin >> name;
+            cout << "Enter Animal ID : ";
+            cin >> id;
+            cout << "Enter Animal Habitat : ";
+            cin >> habitat;
+        }
+        else
+            cout << "Animal with " << targetID << " is not found.";
     }
 };
 class Mammal : public Animal
@@ -52,6 +70,20 @@ public:
         cout << "Enter Diet Type (Herbivore/Carnivore/omnivore) : ";
         cin >> dietType;
     }
+    void modifyDetailsById(string targetId)
+    {
+        if (getId() == targetId)
+        {
+            Animal::modifyDetailsById(targetId);
+            cout << "Enter Diet Type (Herbivore/Carnivore/Omnivore) : ";
+            cin >> dietType;
+            cout << "Details modified successfully!" << endl;
+        }
+        else
+        {
+            cout << "Mammal with ID " << targetId << " not found." << endl;
+        }
+    }
 };
 class Bird : public Animal
 {
@@ -73,6 +105,20 @@ public:
         Animal::modifyDetails();
         cout << "Enter Wing Span in meters :";
         cin >> wingSpan;
+    }
+    void modifyDetailsById(string targetId)
+    {
+        if (getId() == targetId)
+        {
+            Animal::modifyDetailsById(targetId);
+            cout << "Enter Wing Span in meters :";
+            cin >> wingSpan;
+            cout << "Details modified successfully!" << endl;
+        }
+        else
+        {
+            cout << "Bird with ID " << targetId << " not found." << endl;
+        }
     }
 };
 int main()
@@ -113,6 +159,31 @@ int main()
         cin >> add_new;
         if (tolower(add_new) != 'y')
             break;
+    }
+
+    while (true)
+    {
+        char modifyChoice;
+        cout << "\nModify animal details? (Y/N): ";
+        cin >> modifyChoice;
+        if (tolower(modifyChoice) != 'y')
+        {
+            break;
+        }
+
+        string targetId;
+        cout << "Enter the ID of the animal to modify: ";
+        cin >> targetId;
+
+        for (int i = 0; i < newMammal; i++)
+        {
+            mammal[i].modifyDetailsById(targetId);
+        }
+
+        for (int i = 0; i < newBird; i++)
+        {
+            bird[i].modifyDetailsById(targetId);
+        }
     }
 
     for (int i = 0; i < newMammal; i++)
