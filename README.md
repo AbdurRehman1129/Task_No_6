@@ -1,3 +1,1 @@
-Working to add function for modifying details using Animal Unique ID
-
-![image](https://github.com/user-attachments/assets/7ca81e0e-05fa-49da-8c3e-4d9d5b935156)
+![image](https://github.com/user-attachments/assets/4bc137e6-d9db-417a-a3e3-da31a7ff6c70)
